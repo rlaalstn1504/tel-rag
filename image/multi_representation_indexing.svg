@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="410" viewBox="0 0 980 410" role="img" aria-labelledby="title desc">
+  <title id="title">Multi-Representation Indexing 구조</title>
+  <desc id="desc">검색에는 짧은 surrogate text를 사용하고 답변 생성에는 원문 context를 다시 꺼내 쓰는 구조를 보여준다.</desc>
+  <defs>
+    <style>
+      .bg { fill:#f8fafc; }
+      .title { font:700 25px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#111827; }
+      .h { font:700 16px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#111827; }
+      .body { font:500 13px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#334155; }
+      .small { font:500 12px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#64748b; }
+      .box { fill:#ffffff; stroke:#cbd5e1; stroke-width:1.4; rx:8; }
+      .raw { fill:#eef2ff; stroke:#818cf8; rx:6; }
+      .sur { fill:#ecfeff; stroke:#06b6d4; rx:6; }
+      .orig { fill:#ecfdf5; stroke:#34d399; rx:6; }
+      .ans { fill:#fff7ed; stroke:#fb923c; rx:6; }
+      .line { stroke:#64748b; stroke-width:2; fill:none; marker-end:url(#arrow); }
+      .dash { stroke:#94a3b8; stroke-width:2; stroke-dasharray:6 5; fill:none; marker-end:url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="980" height="410"/>
+  <text x="490" y="38" text-anchor="middle" class="title">검색 표현과 답변 근거를 분리하기</text>
+
+  <rect x="45" y="105" width="170" height="170" class="box"/>
+  <text x="130" y="135" text-anchor="middle" class="h">Raw Chunk</text>
+  <rect x="75" y="160" width="110" height="82" class="raw"/>
+  <text x="130" y="187" text-anchor="middle" class="body">원문 청크</text>
+  <text x="130" y="209" text-anchor="middle" class="small">길고 잡음이 섞일 수 있음</text>
+
+  <path class="line" d="M220 190 L315 190"/>
+
+  <rect x="320" y="78" width="220" height="115" class="box"/>
+  <text x="430" y="108" text-anchor="middle" class="h">Surrogate Text</text>
+  <rect x="350" y="130" width="160" height="36" class="sur"/>
+  <text x="430" y="153" text-anchor="middle" class="body">요약 / 키워드 / 질문형 표현</text>
+
+  <rect x="320" y="225" width="220" height="115" class="box"/>
+  <text x="430" y="255" text-anchor="middle" class="h">Original Context</text>
+  <rect x="350" y="277" width="160" height="36" class="orig"/>
+  <text x="430" y="300" text-anchor="middle" class="body">답변에 쓸 원문 보관</text>
+
+  <path class="line" d="M545 135 L650 135"/>
+  <rect x="655" y="78" width="145" height="115" class="box"/>
+  <text x="728" y="108" text-anchor="middle" class="h">Vector Index</text>
+  <rect x="685" y="130" width="85" height="36" class="sur"/>
+  <text x="728" y="153" text-anchor="middle" class="body">검색 대상</text>
+
+  <path class="dash" d="M728 195 L728 252"/>
+  <path class="dash" d="M540 282 L655 282"/>
+  <rect x="655" y="225" width="145" height="115" class="box"/>
+  <text x="728" y="255" text-anchor="middle" class="h">Metadata</text>
+  <rect x="685" y="277" width="85" height="36" class="orig"/>
+  <text x="728" y="300" text-anchor="middle" class="body">original_text</text>
+
+  <path class="line" d="M805 135 L895 190"/>
+  <path class="line" d="M805 282 L895 220"/>
+  <rect x="850" y="160" width="105" height="86" class="ans"/>
+  <text x="902" y="191" text-anchor="middle" class="h">Answer</text>
+  <text x="902" y="216" text-anchor="middle" class="small">검색은 대표 표현</text>
+  <text x="902" y="234" text-anchor="middle" class="small">생성은 원문 근거</text>
+</svg>

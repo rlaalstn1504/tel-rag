@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="460" viewBox="0 0 920 460" role="img" aria-labelledby="title desc">
+  <title id="title">ChromaDB 구성 개요</title>
+  <desc id="desc">ChromaDB가 문서, 임베딩, 메타데이터를 컬렉션에 모아 검색에 사용하는 구조를 보여준다.</desc>
+  <style>
+    .bg { fill: #f7f8fb; }
+    .panel { fill: #fff; stroke: #cbd5e1; stroke-width: 2; rx: 14; }
+    .box { fill: #e8f1ff; stroke: #9ec5ff; stroke-width: 2; rx: 10; }
+    .index { fill: #ecfdf3; stroke: #86efac; stroke-width: 2; rx: 10; }
+    .query { fill: #fff7ed; stroke: #fdba74; stroke-width: 2; rx: 10; }
+    .title { font: 700 25px sans-serif; fill: #172033; }
+    .h { font: 700 18px sans-serif; fill: #172033; }
+    .body { font: 14px sans-serif; fill: #344054; }
+    .label { font: 700 13px sans-serif; fill: #475467; }
+    .arrow { stroke: #667085; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#667085"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="920" height="460"/>
+  <text x="460" y="44" text-anchor="middle" class="title">ChromaDB는 검색에 쓸 정보를 컬렉션에 모아 둔다</text>
+
+  <rect x="80" y="90" width="350" height="285" class="panel"/>
+  <text x="255" y="128" text-anchor="middle" class="h">collection</text>
+  <rect x="125" y="160" width="260" height="42" class="box"/>
+  <text x="255" y="187" text-anchor="middle" class="body">documents</text>
+  <rect x="125" y="222" width="260" height="42" class="box"/>
+  <text x="255" y="249" text-anchor="middle" class="body">embeddings</text>
+  <rect x="125" y="284" width="260" height="42" class="box"/>
+  <text x="255" y="311" text-anchor="middle" class="body">metadatas</text>
+
+  <rect x="520" y="90" width="320" height="285" class="panel"/>
+  <text x="680" y="128" text-anchor="middle" class="h">검색 구조</text>
+  <rect x="570" y="170" width="220" height="54" class="index"/>
+  <text x="680" y="203" text-anchor="middle" class="body">HNSW index</text>
+  <rect x="570" y="272" width="220" height="54" class="query"/>
+  <text x="680" y="305" text-anchor="middle" class="body">query vector</text>
+
+  <path d="M430 244 H520" class="arrow"/>
+  <path d="M680 272 V232" class="arrow"/>
+  <text x="460" y="415" text-anchor="middle" class="label">persist_directory를 지정하면 컬렉션과 인덱스가 로컬 디스크에 저장된다</text>
+</svg>

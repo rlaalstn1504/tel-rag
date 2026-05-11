@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="720" viewBox="0 0 1180 720" role="img" aria-labelledby="title desc">
+  <title id="title">Graph RAG 파이프라인 동작 과정</title>
+  <desc id="desc">문서를 엔터티와 관계로 구조화해 지식그래프를 만들고, 질문에서 엔터티와 관계 의도를 추출한 뒤 그래프를 조회해 답변하는 과정을 보여준다. 벡터 검색은 선택적으로 보완할 수 있음을 함께 표시한다.</desc>
+  <defs>
+    <style>
+      .bg { fill:#f8fafc; }
+      .panel { fill:#ffffff; stroke:#e2e8f0; stroke-width:1.5; }
+      .lane { fill:#f8fafc; stroke:#e2e8f0; stroke-width:1.4; }
+      .title { font:700 30px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#111827; }
+      .subtitle { font:500 15px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#64748b; }
+      .lane-title { font:700 19px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#0f172a; }
+      .h { font:700 16px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#111827; }
+      .body { font:500 13px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#334155; }
+      .small { font:500 12px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#64748b; }
+      .note { font:700 14px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#0f172a; }
+      .doc { fill:#eef2ff; stroke:#818cf8; stroke-width:1.5; }
+      .extract { fill:#ecfeff; stroke:#06b6d4; stroke-width:1.5; }
+      .query { fill:#fef3c7; stroke:#f59e0b; stroke-width:1.5; }
+      .graphbox { fill:#ecfdf5; stroke:#34d399; stroke-width:1.5; }
+      .cypher { fill:#f0fdf4; stroke:#22c55e; stroke-width:1.5; }
+      .answer { fill:#fee2e2; stroke:#f87171; stroke-width:1.5; }
+      .optional { fill:#fff7ed; stroke:#fb923c; stroke-width:1.4; stroke-dasharray:6 5; }
+      .line { stroke:#64748b; stroke-width:2.3; fill:none; marker-end:url(#arrow); }
+      .line-soft { stroke:#94a3b8; stroke-width:2; stroke-dasharray:5 5; fill:none; marker-end:url(#arrowSoft); }
+      .edge { stroke:#15803d; stroke-width:2.2; fill:none; marker-end:url(#graphArrow); }
+      .edge-label-bg { fill:#ffffff; stroke:#bbf7d0; stroke-width:1; }
+      .edge-label { font:700 11px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#166534; }
+      .node-a { fill:#dbeafe; stroke:#60a5fa; stroke-width:2; }
+      .node-b { fill:#dcfce7; stroke:#4ade80; stroke-width:2; }
+      .node-c { fill:#fef3c7; stroke:#f59e0b; stroke-width:2; }
+      .node-d { fill:#fce7f3; stroke:#f472b6; stroke-width:2; }
+      .node-e { fill:#ede9fe; stroke:#a78bfa; stroke-width:2; }
+      .node-text { font:700 12px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#0f172a; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowSoft" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="graphArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#15803d"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1180" height="720"/>
+  <rect x="30" y="28" width="1120" height="664" rx="26" class="panel"/>
+
+  <text x="590" y="72" text-anchor="middle" class="title">Graph RAG 파이프라인 동작 과정</text>
+  <text x="590" y="101" text-anchor="middle" class="subtitle">핵심은 벡터DB가 아니라, 문서를 엔터티와 관계로 구조화하고 그래프 경로를 조회하는 것입니다.</text>
+
+  <rect x="70" y="135" width="1040" height="230" rx="18" class="lane"/>
+  <rect x="70" y="400" width="1040" height="200" rx="18" class="lane"/>
+
+  <text x="98" y="170" class="lane-title">1. 그래프 구축 단계</text>
+  <text x="98" y="435" class="lane-title">2. 질문 처리 단계</text>
+
+  <!-- Build graph -->
+  <rect x="105" y="220" width="150" height="82" rx="12" class="doc"/>
+  <text x="180" y="251" text-anchor="middle" class="h">문서</text>
+  <text x="180" y="276" text-anchor="middle" class="small">정책, 매뉴얼,</text>
+  <text x="180" y="294" text-anchor="middle" class="small">업무 지식</text>
+
+  <path class="line" d="M260 261 L335 261"/>
+
+  <rect x="340" y="205" width="190" height="112" rx="12" class="extract"/>
+  <text x="435" y="237" text-anchor="middle" class="h">구조화</text>
+  <text x="435" y="262" text-anchor="middle" class="small">엔터티 추출</text>
+  <text x="435" y="282" text-anchor="middle" class="small">관계 추출</text>
+  <text x="435" y="302" text-anchor="middle" class="small">온톨로지에 맞춰 정리</text>
+
+  <path class="line" d="M535 261 L625 261"/>
+
+  <rect x="630" y="170" width="330" height="170" rx="16" class="graphbox"/>
+  <text x="795" y="201" text-anchor="middle" class="h">지식그래프</text>
+
+  <!-- Graph drawing -->
+  <path class="edge" d="M705 258 C735 220, 770 218, 800 245"/>
+  <path class="edge" d="M705 273 C745 310, 798 311, 835 278"/>
+  <path class="edge" d="M855 252 C890 226, 915 235, 930 267"/>
+  <path class="edge" d="M835 283 C825 315, 790 322, 758 304"/>
+
+  <rect x="724" y="218" width="70" height="24" rx="12" class="edge-label-bg"/>
+  <text x="759" y="235" text-anchor="middle" class="edge-label">포함한다</text>
+  <rect x="744" y="305" width="82" height="24" rx="12" class="edge-label-bg"/>
+  <text x="785" y="322" text-anchor="middle" class="edge-label">담당부서</text>
+  <rect x="862" y="222" width="70" height="24" rx="12" class="edge-label-bg"/>
+  <text x="897" y="239" text-anchor="middle" class="edge-label">필요로함</text>
+
+  <circle cx="690" cy="266" r="34" class="node-a"/>
+  <text x="690" y="262" text-anchor="middle" class="node-text">회의실</text>
+  <text x="690" y="278" text-anchor="middle" class="node-text">A</text>
+  <circle cx="830" cy="260" r="34" class="node-b"/>
+  <text x="830" y="256" text-anchor="middle" class="node-text">예약</text>
+  <text x="830" y="272" text-anchor="middle" class="node-text">절차</text>
+  <circle cx="930" cy="290" r="32" class="node-c"/>
+  <text x="930" y="286" text-anchor="middle" class="node-text">사원증</text>
+  <circle cx="730" cy="315" r="30" class="node-d"/>
+  <text x="730" y="319" text-anchor="middle" class="node-text">총무팀</text>
+  <circle cx="820" cy="330" r="28" class="node-e"/>
+  <text x="820" y="334" text-anchor="middle" class="node-text">신청서</text>
+
+  <path class="line-soft" d="M470 330 C520 365, 580 372, 650 350"/>
+  <rect x="140" y="330" width="350" height="24" rx="12" class="optional"/>
+  <text x="315" y="347" text-anchor="middle" class="small">선택: 원문 청크를 별도로 저장해 답변 근거 문장으로 보강할 수 있음</text>
+
+  <!-- Query graph -->
+  <rect x="105" y="480" width="150" height="82" rx="12" class="query"/>
+  <text x="180" y="511" text-anchor="middle" class="h">사용자 질문</text>
+  <text x="180" y="536" text-anchor="middle" class="small">회의실 A 예약에</text>
+  <text x="180" y="554" text-anchor="middle" class="small">필요한 것은?</text>
+
+  <path class="line" d="M260 521 L335 521"/>
+
+  <rect x="340" y="465" width="190" height="112" rx="12" class="extract"/>
+  <text x="435" y="497" text-anchor="middle" class="h">질문 해석</text>
+  <text x="435" y="522" text-anchor="middle" class="small">엔터티: 회의실 A</text>
+  <text x="435" y="542" text-anchor="middle" class="small">관계: 예약 절차,</text>
+  <text x="435" y="562" text-anchor="middle" class="small">필요 물건</text>
+
+  <path class="line" d="M535 521 L625 521"/>
+
+  <rect x="630" y="465" width="180" height="112" rx="12" class="cypher"/>
+  <text x="720" y="497" text-anchor="middle" class="h">그래프 조회</text>
+  <text x="720" y="522" text-anchor="middle" class="small">노드에서 출발해</text>
+  <text x="720" y="542" text-anchor="middle" class="small">관계 경로 탐색</text>
+  <text x="720" y="562" text-anchor="middle" class="small">Cypher / Graph API</text>
+
+  <path class="line" d="M815 521 L895 521"/>
+
+  <rect x="900" y="465" width="145" height="112" rx="12" class="answer"/>
+  <text x="972" y="497" text-anchor="middle" class="h">답변 생성</text>
+  <text x="972" y="522" text-anchor="middle" class="small">조회 결과와</text>
+  <text x="972" y="542" text-anchor="middle" class="small">근거 경로를</text>
+  <text x="972" y="562" text-anchor="middle" class="small">함께 사용</text>
+
+  <path class="line-soft" d="M810 570 C850 625, 930 630, 1005 585"/>
+  <rect x="395" y="620" width="390" height="30" rx="15" class="optional"/>
+  <text x="590" y="640" text-anchor="middle" class="small">선택: 벡터 검색 결과를 함께 넣으면 원문 표현과 긴 설명을 보완할 수 있습니다.</text>
+
+  <rect x="125" y="666" width="930" height="32" rx="12" class="doc"/>
+  <text x="590" y="687" text-anchor="middle" class="note">Graph RAG의 필수 구성은 지식그래프 조회이며, 벡터DB는 필요할 때 붙이는 보완 경로입니다.</text>
+</svg>

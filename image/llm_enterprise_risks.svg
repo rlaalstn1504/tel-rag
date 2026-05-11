@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="420" viewBox="0 0 920 420" role="img" aria-labelledby="title desc">
+  <title id="title">기업 LLM 활용 시 점검할 리스크</title>
+  <desc id="desc">입력 데이터, 저장과 학습, 권한, 추적, 책임 관점에서 기업 LLM 활용 시 점검할 항목을 정리한 그림</desc>
+  <defs>
+    <style>
+      .title { font: 700 24px sans-serif; fill: #1f2937; }
+      .head { font: 700 17px sans-serif; fill: #111827; }
+      .body { font: 14px sans-serif; fill: #374151; }
+      .note { font: 13px sans-serif; fill: #4b5563; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 8; }
+      .risk { fill: #fee2e2; stroke: #fecaca; }
+      .control { fill: #e0f2fe; stroke: #bae6fd; }
+      .check { fill: #dcfce7; stroke: #bbf7d0; }
+      .arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="420" fill="#f8fafc"/>
+  <text class="title" x="40" y="44">기업에서 LLM을 쓰기 전에 보는 점검 항목</text>
+
+  <rect class="box risk" x="40" y="86" width="240" height="240"/>
+  <text class="head" x="160" y="122" text-anchor="middle">무심코 쓰면 생기는 문제</text>
+  <text class="body" x="66" y="160">민감 정보 입력</text>
+  <text class="body" x="66" y="192">입력 데이터 저장 위치 불명확</text>
+  <text class="body" x="66" y="224">권한 밖 문서 노출 가능성</text>
+  <text class="body" x="66" y="256">근거 없는 답변</text>
+  <text class="body" x="66" y="288">사용 기록 추적 어려움</text>
+
+  <path class="arrow" d="M280 206 H340"/>
+
+  <rect class="box control" x="340" y="86" width="240" height="240"/>
+  <text class="head" x="460" y="122" text-anchor="middle">기업에서 필요한 통제</text>
+  <text class="body" x="366" y="160">입력 가능 데이터 기준</text>
+  <text class="body" x="366" y="192">저장, 학습 사용 여부 확인</text>
+  <text class="body" x="366" y="224">사용자 권한 관리</text>
+  <text class="body" x="366" y="256">답변 근거 확인</text>
+  <text class="body" x="366" y="288">로그와 감사 기록</text>
+
+  <path class="arrow" d="M580 206 H640"/>
+
+  <rect class="box check" x="640" y="86" width="240" height="240"/>
+  <text class="head" x="760" y="122" text-anchor="middle">업무 적용 전 질문</text>
+  <text class="body" x="666" y="160">무엇을 입력해도 되는가?</text>
+  <text class="body" x="666" y="192">누가 답변을 볼 수 있는가?</text>
+  <text class="body" x="666" y="224">근거를 확인할 수 있는가?</text>
+  <text class="body" x="666" y="256">틀린 답을 어떻게 잡는가?</text>
+  <text class="body" x="666" y="288">운영 비용은 감당 가능한가?</text>
+
+  <text class="note" x="460" y="374" text-anchor="middle">LLM 자체의 성능만이 아니라 데이터, 권한, 근거, 로그, 운영 책임을 함께 봐야 합니다.</text>
+</svg>

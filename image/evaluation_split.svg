@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Retrieval 평가와 Generation 평가 분리</title>
+  <desc id="desc">RAG 평가는 검색 단계와 생성 단계를 나누어 본다. Retrieval 평가는 근거 회수를 보고 Generation 평가는 문서 근거 기반 답변을 본다.</desc>
+  <defs>
+    <style>
+      .bg { fill:#f8fafc; }
+      .title { font:700 25px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#111827; }
+      .h { font:700 17px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#111827; }
+      .body { font:500 13px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#334155; }
+      .small { font:500 12px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#64748b; }
+      .box { fill:#ffffff; stroke:#cbd5e1; stroke-width:1.4; rx:8; }
+      .query { fill:#eef2ff; stroke:#818cf8; rx:6; }
+      .retr { fill:#ecfeff; stroke:#06b6d4; rx:6; }
+      .gen { fill:#fff7ed; stroke:#fb923c; rx:6; }
+      .eval { fill:#ecfdf5; stroke:#34d399; rx:6; }
+      .line { stroke:#64748b; stroke-width:2; fill:none; marker-end:url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="960" height="420"/>
+  <text x="480" y="38" text-anchor="middle" class="title">RAG 평가는 두 단계로 나누어 본다</text>
+
+  <rect x="55" y="100" width="130" height="70" class="query"/>
+  <text x="120" y="130" text-anchor="middle" class="h">질문</text>
+  <text x="120" y="152" text-anchor="middle" class="small">user input</text>
+  <path class="line" d="M190 135 L280 135"/>
+
+  <rect x="285" y="85" width="180" height="100" class="retr"/>
+  <text x="375" y="120" text-anchor="middle" class="h">Retriever</text>
+  <text x="375" y="145" text-anchor="middle" class="body">Top-K 문서 검색</text>
+  <path class="line" d="M470 135 L560 135"/>
+
+  <rect x="565" y="85" width="180" height="100" class="gen"/>
+  <text x="655" y="120" text-anchor="middle" class="h">Generator</text>
+  <text x="655" y="145" text-anchor="middle" class="body">문맥 기반 답변 생성</text>
+  <path class="line" d="M750 135 L840 135"/>
+
+  <rect x="815" y="100" width="110" height="70" class="query"/>
+  <text x="870" y="130" text-anchor="middle" class="h">답변</text>
+  <text x="870" y="152" text-anchor="middle" class="small">response</text>
+
+  <rect x="245" y="245" width="270" height="115" class="box"/>
+  <text x="380" y="278" text-anchor="middle" class="h">Retrieval Evaluation</text>
+  <rect x="275" y="300" width="95" height="34" class="eval"/>
+  <text x="322" y="322" text-anchor="middle" class="body">Hit@K</text>
+  <rect x="390" y="300" width="95" height="34" class="eval"/>
+  <text x="437" y="322" text-anchor="middle" class="body">Recall@K</text>
+  <text x="380" y="350" text-anchor="middle" class="small">정답 근거가 검색 결과 안에 들어왔는가</text>
+  <path class="line" d="M375 190 L375 240"/>
+
+  <rect x="570" y="245" width="270" height="115" class="box"/>
+  <text x="705" y="278" text-anchor="middle" class="h">Generation Evaluation</text>
+  <rect x="600" y="300" width="105" height="34" class="eval"/>
+  <text x="652" y="322" text-anchor="middle" class="body">Faithfulness</text>
+  <rect x="720" y="300" width="90" height="34" class="eval"/>
+  <text x="765" y="322" text-anchor="middle" class="body">정확성</text>
+  <text x="705" y="350" text-anchor="middle" class="small">답변이 문맥과 기준 답안에 맞는가</text>
+  <path class="line" d="M655 190 L655 240"/>
+</svg>

@@ -1,0 +1,26 @@
+# Core runtime
+python-dotenv
+langchain
+langchain_community
+langchain-openai
+langchain-chroma
+chromadb
+pypdf
+tiktoken
+
+# Retrieval / evaluation
+rank-bm25
+numpy
+sentence-transformers
+ragas
+
+# Monitoring
+langfuse
+trulens==2.8.0
+trulens-apps-langchain==2.8.0
+trulens-providers-openai==2.8.0
+trulens-providers-langchain==2.8.0
+
+jsonschema
+ipykernel
+ipywidgets

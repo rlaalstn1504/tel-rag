@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">벡터 인덱싱 방식 비교</title>
+  <desc id="desc">Exact search, IVF, HNSW, PQ 방식이 벡터 검색에서 어떤 탐색 전략을 쓰는지 비교한다.</desc>
+  <style>
+    .bg { fill: #f7f8fb; }
+    .panel { fill: #fff; stroke: #cbd5e1; stroke-width: 2; rx: 14; }
+    .title { font: 700 25px sans-serif; fill: #172033; }
+    .h { font: 700 18px sans-serif; fill: #172033; }
+    .body { font: 14px sans-serif; fill: #344054; }
+    .small { font: 12px sans-serif; fill: #475467; }
+    .dot { fill: #4f7cff; }
+    .query { fill: #ef4444; }
+    .line { stroke: #94a3b8; stroke-width: 2; }
+    .path { stroke: #16a34a; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+    .cell { fill: #e8f1ff; stroke: #9ec5ff; stroke-width: 1.5; }
+    .code { fill: #ecfdf3; stroke: #86efac; stroke-width: 1.5; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#16a34a"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="920" height="520"/>
+  <text x="460" y="44" text-anchor="middle" class="title">벡터 인덱싱은 “어떻게 빨리 가까운 벡터를 찾을까”의 문제</text>
+
+  <rect x="45" y="80" width="190" height="340" class="panel"/>
+  <text x="140" y="118" text-anchor="middle" class="h">Exact / Flat</text>
+  <text x="70" y="150" class="body">모든 벡터를 비교</text>
+  <text x="70" y="178" class="small">정확하지만 커질수록 느림</text>
+  <circle cx="90" cy="245" r="6" class="dot"/><circle cx="128" cy="218" r="6" class="dot"/><circle cx="170" cy="260" r="6" class="dot"/>
+  <circle cx="105" cy="310" r="6" class="dot"/><circle cx="185" cy="330" r="6" class="dot"/><circle cx="150" cy="295" r="7" class="query"/>
+  <line x1="150" y1="295" x2="90" y2="245" class="line"/><line x1="150" y1="295" x2="128" y2="218" class="line"/>
+  <line x1="150" y1="295" x2="170" y2="260" class="line"/><line x1="150" y1="295" x2="105" y2="310" class="line"/><line x1="150" y1="295" x2="185" y2="330" class="line"/>
+
+  <rect x="265" y="80" width="190" height="340" class="panel"/>
+  <text x="360" y="118" text-anchor="middle" class="h">IVF</text>
+  <text x="290" y="150" class="body">먼저 군집을 나눔</text>
+  <text x="290" y="178" class="small">가까운 군집 안에서 검색</text>
+  <rect x="292" y="218" width="58" height="58" class="cell"/><rect x="368" y="218" width="58" height="58" class="cell"/>
+  <rect x="292" y="300" width="58" height="58" class="cell"/><rect x="368" y="300" width="58" height="58" class="cell"/>
+  <circle cx="395" cy="245" r="7" class="query"/>
+  <path d="M395 245 C380 245, 370 250, 358 260" class="path"/>
+  <text x="360" y="390" text-anchor="middle" class="small">빠르지만 군집 선택 품질이 중요</text>
+
+  <rect x="485" y="80" width="190" height="340" class="panel"/>
+  <text x="580" y="118" text-anchor="middle" class="h">HNSW</text>
+  <text x="510" y="150" class="body">가까운 벡터끼리 그래프 연결</text>
+  <text x="510" y="178" class="small">ChromaDB 기본 방식</text>
+  <circle cx="535" cy="235" r="6" class="dot"/><circle cx="585" cy="218" r="6" class="dot"/><circle cx="625" cy="250" r="6" class="dot"/>
+  <circle cx="555" cy="310" r="6" class="dot"/><circle cx="610" cy="330" r="6" class="dot"/><circle cx="640" cy="300" r="7" class="query"/>
+  <line x1="535" y1="235" x2="585" y2="218" class="line"/><line x1="585" y1="218" x2="625" y2="250" class="line"/>
+  <line x1="625" y1="250" x2="640" y2="300" class="line"/><line x1="555" y1="310" x2="610" y2="330" class="line"/>
+  <line x1="610" y1="330" x2="640" y2="300" class="line"/><line x1="535" y1="235" x2="555" y2="310" class="line"/>
+  <path d="M535 235 C575 220, 610 240, 640 300" class="path"/>
+
+  <rect x="705" y="80" width="190" height="340" class="panel"/>
+  <text x="800" y="118" text-anchor="middle" class="h">PQ / 압축</text>
+  <text x="730" y="150" class="body">벡터를 작게 압축해 저장</text>
+  <text x="730" y="178" class="small">메모리 절약, 정확도 손실 가능</text>
+  <rect x="742" y="230" width="115" height="34" class="code"/>
+  <rect x="742" y="280" width="88" height="34" class="code"/>
+  <rect x="742" y="330" width="132" height="34" class="code"/>
+  <text x="800" y="252" text-anchor="middle" class="small">원본 벡터</text>
+  <text x="786" y="302" text-anchor="middle" class="small">코드북</text>
+  <text x="808" y="352" text-anchor="middle" class="small">압축 표현</text>
+
+  <text x="460" y="475" text-anchor="middle" class="body">RAG 실습에서는 HNSW 기본값으로 충분하고, 운영에서는 데이터 크기와 지연 시간에 맞춰 조정한다</text>
+</svg>

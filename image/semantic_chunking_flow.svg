@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="360" viewBox="0 0 980 360" role="img" aria-labelledby="title desc">
+  <title id="title">PDF 페이지에서 시맨틱 청크까지의 흐름</title>
+  <desc id="desc">PDF 페이지를 정제하고 문단 블록으로 나눈 뒤 의미 전환 지점을 기준으로 semantic chunk를 만든다.</desc>
+  <defs>
+    <style>
+      .bg { fill:#f8fafc; }
+      .title { font:700 25px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#111827; }
+      .h { font:700 16px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#111827; }
+      .body { font:500 13px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#334155; }
+      .small { font:500 12px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#64748b; }
+      .box { fill:#ffffff; stroke:#cbd5e1; stroke-width:1.4; rx:8; }
+      .page { fill:#eef2ff; stroke:#818cf8; rx:6; }
+      .para { fill:#ecfeff; stroke:#06b6d4; rx:5; }
+      .chunk { fill:#ecfdf5; stroke:#34d399; rx:6; }
+      .signal { fill:#fff7ed; stroke:#fb923c; rx:6; }
+      .line { stroke:#64748b; stroke-width:2; fill:none; marker-end:url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="980" height="360"/>
+  <text x="490" y="38" text-anchor="middle" class="title">PDF 페이지 -> 문단 블록 -> Semantic Chunk</text>
+
+  <rect x="40" y="82" width="170" height="210" class="box"/>
+  <text x="125" y="112" text-anchor="middle" class="h">PDF 페이지</text>
+  <rect x="78" y="138" width="94" height="118" class="page"/>
+  <line x1="96" y1="163" x2="154" y2="163" stroke="#818cf8" stroke-width="3"/>
+  <line x1="96" y1="185" x2="154" y2="185" stroke="#818cf8" stroke-width="3"/>
+  <line x1="96" y1="207" x2="154" y2="207" stroke="#818cf8" stroke-width="3"/>
+  <text x="125" y="277" text-anchor="middle" class="small">머리글, 쪽번호, 줄바꿈 잡음 포함</text>
+
+  <path class="line" d="M215 187 L305 187"/>
+
+  <rect x="310" y="82" width="170" height="210" class="box"/>
+  <text x="395" y="112" text-anchor="middle" class="h">정제된 문단</text>
+  <rect x="345" y="135" width="100" height="31" class="para"/>
+  <rect x="345" y="177" width="100" height="31" class="para"/>
+  <rect x="345" y="219" width="100" height="31" class="para"/>
+  <text x="395" y="277" text-anchor="middle" class="small">문단 단위로 의미 후보를 분리</text>
+
+  <path class="line" d="M485 187 L575 187"/>
+
+  <rect x="580" y="82" width="170" height="210" class="box"/>
+  <text x="665" y="112" text-anchor="middle" class="h">의미 전환 확인</text>
+  <rect x="620" y="140" width="90" height="30" class="signal"/>
+  <text x="665" y="160" text-anchor="middle" class="body">유사도 높음</text>
+  <rect x="620" y="188" width="90" height="30" class="signal"/>
+  <text x="665" y="208" text-anchor="middle" class="body">유사도 낮음</text>
+  <rect x="620" y="236" width="90" height="30" class="signal"/>
+  <text x="665" y="256" text-anchor="middle" class="body">경계 후보</text>
+
+  <path class="line" d="M755 187 L845 187"/>
+
+  <rect x="795" y="82" width="150" height="210" class="box"/>
+  <text x="870" y="112" text-anchor="middle" class="h">Semantic Chunk</text>
+  <rect x="825" y="138" width="90" height="42" class="chunk"/>
+  <text x="870" y="163" text-anchor="middle" class="body">청크 A</text>
+  <rect x="825" y="194" width="90" height="42" class="chunk"/>
+  <text x="870" y="219" text-anchor="middle" class="body">청크 B</text>
+  <text x="870" y="277" text-anchor="middle" class="small">의미가 바뀌는 지점에서 분리</text>
+</svg>

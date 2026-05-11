@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="550" viewBox="0 0 1040 550" role="img" aria-labelledby="title desc">
+  <title id="title">RAG 확장 전략 비교</title>
+  <desc id="desc">Vector RAG를 기본 구조로 두고, Hybrid RAG는 검색 품질을 보강하며 Graph RAG는 관계형 질문을 보강하는 전략임을 보여준다.</desc>
+  <defs>
+    <style>
+      .bg { fill:#f8fafc; }
+      .panel { fill:#ffffff; stroke:#e2e8f0; stroke-width:1.4; }
+      .title { font:700 27px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#111827; }
+      .subtitle { font:500 14px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#64748b; }
+      .h { font:700 19px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#111827; }
+      .label { font:700 13px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#334155; }
+      .body { font:500 13px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#334155; }
+      .small { font:500 12px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#64748b; }
+      .note { font:700 14px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#0f172a; }
+      .card { fill:#ffffff; stroke:#cbd5e1; stroke-width:1.5; }
+      .base { fill:#eef2ff; stroke:#818cf8; stroke-width:1.4; }
+      .hybrid { fill:#ecfeff; stroke:#06b6d4; stroke-width:1.4; }
+      .graph { fill:#ecfdf5; stroke:#34d399; stroke-width:1.4; }
+      .chip-base { fill:#e0e7ff; stroke:#a5b4fc; stroke-width:1.2; }
+      .chip-hybrid { fill:#cffafe; stroke:#67e8f9; stroke-width:1.2; }
+      .chip-graph { fill:#d1fae5; stroke:#6ee7b7; stroke-width:1.2; }
+      .line { stroke:#64748b; stroke-width:2.4; fill:none; marker-end:url(#arrow); }
+      .branch-label { font:700 12px "Pretendard","Noto Sans KR",Arial,sans-serif; fill:#475569; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1040" height="550"/>
+  <rect x="28" y="26" width="984" height="498" rx="26" class="panel"/>
+
+  <text x="520" y="64" text-anchor="middle" class="title">질문 유형에 따른 RAG 확장 전략</text>
+  <text x="520" y="91" text-anchor="middle" class="subtitle">기본 Vector RAG에서 출발해, 필요한 품질에 맞게 검색 방식이나 관계 탐색을 보강합니다.</text>
+
+  <!-- Base card -->
+  <rect x="70" y="174" width="270" height="170" rx="20" class="card"/>
+  <text x="205" y="213" text-anchor="middle" class="h">Vector RAG</text>
+  <text x="205" y="238" text-anchor="middle" class="small">기본 검색 구조</text>
+  <rect x="108" y="264" width="194" height="32" rx="12" class="chip-base"/>
+  <text x="205" y="285" text-anchor="middle" class="body">질문 임베딩</text>
+  <rect x="108" y="306" width="194" height="32" rx="12" class="chip-base"/>
+  <text x="205" y="327" text-anchor="middle" class="body">유사 청크 검색</text>
+
+  <!-- Branch arrows -->
+  <path class="line" d="M348 220 C430 160, 480 150, 570 150"/>
+  <text x="440" y="150" text-anchor="middle" class="branch-label">검색 품질 보강</text>
+  <path class="line" d="M348 300 C430 360, 480 370, 570 370"/>
+  <text x="440" y="382" text-anchor="middle" class="branch-label">관계형 질문 보강</text>
+
+  <!-- Hybrid card -->
+  <rect x="570" y="112" width="360" height="150" rx="20" class="card"/>
+  <text x="750" y="149" text-anchor="middle" class="h">Hybrid RAG</text>
+  <text x="750" y="172" text-anchor="middle" class="small">문장 유사도만으로 부족할 때</text>
+  <rect x="610" y="195" width="136" height="34" rx="12" class="chip-hybrid"/>
+  <text x="678" y="217" text-anchor="middle" class="body">Dense + Sparse</text>
+  <rect x="762" y="195" width="128" height="34" rx="12" class="chip-hybrid"/>
+  <text x="826" y="217" text-anchor="middle" class="body">Reranking</text>
+  <text x="750" y="248" text-anchor="middle" class="label">목표: 더 관련 있는 문서를 상위에 배치</text>
+
+  <!-- Graph card -->
+  <rect x="570" y="300" width="360" height="150" rx="20" class="card"/>
+  <text x="750" y="337" text-anchor="middle" class="h">Graph RAG</text>
+  <text x="750" y="360" text-anchor="middle" class="small">대상과 관계를 따라가야 할 때</text>
+  <rect x="610" y="383" width="136" height="34" rx="12" class="chip-graph"/>
+  <text x="678" y="405" text-anchor="middle" class="body">엔터티 / 관계</text>
+  <rect x="762" y="383" width="128" height="34" rx="12" class="chip-graph"/>
+  <text x="826" y="405" text-anchor="middle" class="body">그래프 조회</text>
+  <text x="750" y="436" text-anchor="middle" class="label">목표: 연결 관계를 따라 필요한 값을 찾기</text>
+
+  <!-- Bottom note -->
+  <rect x="90" y="478" width="860" height="36" rx="14" class="base"/>
+  <text x="520" y="501" text-anchor="middle" class="note">검색 품질은 Hybrid RAG로, 관계 탐색은 Graph RAG로 보강합니다.</text>
+</svg>

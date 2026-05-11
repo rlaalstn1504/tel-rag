@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
+  <title id="title">기업 LLM 활용 선택지</title>
+  <desc id="desc">대중형 챗봇, API 기반 상용 LLM, 오픈소스 LLM의 장점과 주의점을 비교한 그림</desc>
+  <defs>
+    <style>
+      .title { font: 700 24px sans-serif; fill: #1f2937; }
+      .label { font: 700 17px sans-serif; fill: #111827; }
+      .body { font: 14px sans-serif; fill: #374151; }
+      .small { font: 13px sans-serif; fill: #4b5563; }
+      .card { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 8; }
+      .top1 { fill: #e0f2fe; }
+      .top2 { fill: #dcfce7; }
+      .top3 { fill: #fef3c7; }
+      .risk { fill: #fee2e2; stroke: #fecaca; }
+      .arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="360" fill="#f8fafc"/>
+  <text class="title" x="40" y="44">기업에서 LLM을 쓸 때 먼저 보는 선택지</text>
+
+  <rect class="card" x="40" y="82" width="250" height="210"/>
+  <rect class="top1" x="40" y="82" width="250" height="48" rx="8"/>
+  <text class="label" x="165" y="112" text-anchor="middle">대중형 챗봇</text>
+  <text class="body" x="62" y="158">예: ChatGPT 웹 서비스</text>
+  <text class="body" x="62" y="188">빠르게 질문하고 답을 받기 좋음</text>
+  <text class="body" x="62" y="218">개인 생산성 도구로 접근하기 쉬움</text>
+  <rect class="risk" x="62" y="240" width="206" height="32" rx="6"/>
+  <text class="small" x="165" y="261" text-anchor="middle">민감 정보 입력 관리 필요</text>
+
+  <rect class="card" x="335" y="82" width="250" height="210"/>
+  <rect class="top2" x="335" y="82" width="250" height="48" rx="8"/>
+  <text class="label" x="460" y="112" text-anchor="middle">API 기반 상용 LLM</text>
+  <text class="body" x="357" y="158">앱과 서버에서 호출 가능</text>
+  <text class="body" x="357" y="188">권한, 로그, 정책을 붙이기 쉬움</text>
+  <text class="body" x="357" y="218">문서, 권한, 로그 체계와 연결 가능</text>
+  <rect class="risk" x="357" y="240" width="206" height="32" rx="6"/>
+  <text class="small" x="460" y="261" text-anchor="middle">비용과 데이터 정책 확인</text>
+
+  <rect class="card" x="630" y="82" width="250" height="210"/>
+  <rect class="top3" x="630" y="82" width="250" height="48" rx="8"/>
+  <text class="label" x="755" y="112" text-anchor="middle">오픈소스 LLM</text>
+  <text class="body" x="652" y="158">내부망 배포와 직접 제어 가능</text>
+  <text class="body" x="652" y="188">도메인 맞춤 튜닝 여지 있음</text>
+  <text class="body" x="652" y="218">인프라와 운영 역량이 필요</text>
+  <rect class="risk" x="652" y="240" width="206" height="32" rx="6"/>
+  <text class="small" x="755" y="261" text-anchor="middle">성능, 비용, 운영 난이도 검토</text>
+
+  <path class="arrow" d="M290 188 H335"/>
+  <path class="arrow" d="M585 188 H630"/>
+  <text class="small" x="460" y="326" text-anchor="middle">핵심: 어떤 모델을 쓰든 보안, 권한, 근거 확인, 운영 책임을 함께 봐야 합니다.</text>
+</svg>
